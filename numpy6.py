@@ -64,7 +64,7 @@ for idx, value in np.ndenumerate(np3):
 np4 = np.array([1, 2, 3, 4])
 print("\nModifying array during iteration using nditer:")
 for x in np.nditer(np4, op_flags=['readwrite']):
-    x[...] = x * 10
+    x[...] = x * 10  # type:ignore
 print("Modified np4:", np4)
 
 # Flattening before iteration
