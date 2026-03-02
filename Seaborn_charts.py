@@ -15,6 +15,9 @@ Notes:
 """
 
 # ========================== Imports ===============================
+import matplotlib.pyplot as plt
+plt.switch_backend("TkAgg")   # Force real pop-up windows
+
 import pandas as pd
 import numpy as np
 from numpy.random import randn
@@ -28,16 +31,16 @@ print(my_df.head())
 # ========================== Histograms ============================
 print("\nCreating histograms...")
 
-# Basic histogram
+plt.figure()
 sns.histplot(data=my_df, x="Mon")
 
-# Histogram with customization
+plt.figure()
 sns.histplot(data=my_df, x="Mon", bins=15, color="green")
 
-# Histogram with KDE overlay
+plt.figure()
 sns.histplot(data=my_df, x="Mon", kde=True, bins=15, color="coral")
 
-# Histogram with transparency and density stat
+plt.figure()
 sns.histplot(
     data=my_df, x="Mon", kde=True, bins=15,
     color="coral", alpha=0.3, stat="density"
@@ -49,16 +52,16 @@ print("\nCreating bar charts...")
 means = my_df.abs().mean()
 days = my_df.columns
 
-# Basic bar chart
+plt.figure()
 sns.barplot(x=days, y=means)
 
-# Bar chart with colors
+plt.figure()
 sns.barplot(x=days, y=means, palette="coolwarm", hue=days)
 
-# Horizontal bar chart
+plt.figure()
 sns.barplot(y=days, x=means, palette="Set2", hue=days)
 
-# Bar chart with transparency and width
+plt.figure()
 sns.barplot(
     x=days, y=means, palette="coolwarm",
     hue=days, width=0.2, alpha=0.3
@@ -67,19 +70,19 @@ sns.barplot(
 # ========================== Line Charts ===========================
 print("\nCreating line charts...")
 
-# Basic line chart
+plt.figure()
 sns.lineplot(data=abs(my_df), x=my_df.index, y="Mon")
 
-# Multiple lines
+plt.figure()
 sns.lineplot(abs(my_df), alpha=0.9)
 
-# Line chart with markers and styling
+plt.figure()
 sns.lineplot(
     data=abs(my_df), x=my_df.index, y="Mon",
     marker="o", linewidth=2, color="purple"
 )
 
-# Line chart with transparency
+plt.figure()
 sns.lineplot(
     data=abs(my_df), x=my_df.index, y="Mon",
     marker="o", linewidth=2, color="purple", alpha=0.3
@@ -88,19 +91,19 @@ sns.lineplot(
 # ========================== Scatterplots ==========================
 print("\nCreating scatterplots...")
 
-# Basic scatterplot
+plt.figure()
 sns.scatterplot(data=my_df, x="Mon", y="Tues")
 
-# Scatterplot with color and size
+plt.figure()
 sns.scatterplot(data=my_df, x="Mon", y="Tues", color="red", s=200)
 
-# Scatterplot with hue
+plt.figure()
 sns.scatterplot(
     data=my_df, x="Mon", y="Tues",
     hue=my_df["Mon"], palette="viridis", s=200
 )
 
-# Scatterplot with size and transparency
+plt.figure()
 sns.scatterplot(
     data=my_df, x="Mon", y="Tues",
     hue="Mon", palette="viridis",
@@ -111,40 +114,45 @@ sns.scatterplot(
 # ========================== Boxplots ==============================
 print("\nCreating boxplots...")
 
-# Basic boxplot
+plt.figure()
 sns.boxplot(data=my_df)
 
-# Boxplot with colors
+plt.figure()
 sns.boxplot(data=my_df, palette="Set2")
 
-# Horizontal boxplot
+plt.figure()
 sns.boxplot(data=my_df, orient="h", palette="Set2")
 
-# Boxplot without outliers
+plt.figure()
 sns.boxplot(data=my_df, palette="Set2", showfliers=False)
 
 # ========================== KDE Plots =============================
 print("\nCreating KDE plots...")
 
-# Basic KDE plot
+plt.figure()
 sns.kdeplot(data=my_df, x="Mon", fill=True)
 
-# Multiple KDE plots
+plt.figure()
 sns.kdeplot(data=my_df, x="Mon", fill=True, label="Mon")
 sns.kdeplot(data=my_df, x="Thur", fill=True, label="Thur")
 
-# KDE with smoother bandwidth
+plt.figure()
 sns.kdeplot(
     data=my_df, x="Mon", fill=True,
     label="Mon", bw_adjust=2, alpha=0.3
 )
 
-# KDE with rougher bandwidth and linewidth
+plt.figure()
 sns.kdeplot(
     data=my_df, x="Mon", fill=True,
     label="Mon", bw_adjust=0.5,
     alpha=0.3, linewidth=3, color="purple"
 )
+
+# ========================== Show All Windows ======================
+plt.show()
+
+print("Lesson complete — all charts generated.")
 
 # ========================== Teaching Notes =========================
 r"""
